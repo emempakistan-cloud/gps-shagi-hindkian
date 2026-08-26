@@ -5,7 +5,7 @@ import styles from './DocumentList.module.css';
 interface Document {
   id: string;
   file_name: string;
-  file_size: number;
+  file_size?: number;
   file_type?: string;
   storage_path: string;
   uploaded_at: string;
@@ -29,7 +29,7 @@ export default function DocumentList({
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
   const [downloadError, setDownloadError] = useState<string | null>(null);
 
-  const formatFileSize = (bytes: number) => {
+  const formatFileSize = (bytes?: number) => {
     if (!bytes || bytes === 0) return '0 B';
     const k = 1024;
     const sizes = ['B', 'KB', 'MB', 'GB'];

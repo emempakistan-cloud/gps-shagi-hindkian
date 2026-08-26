@@ -2,6 +2,7 @@ import styles from '@/styles/TeacherCard.module.css';
 
 interface Teacher {
   id: string;
+  user_id?: string;
   full_name: string;
   email: string;
   subject?: string;
