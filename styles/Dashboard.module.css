@@ -1,0 +1,333 @@
+/* Dashboard container */
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Tabs */
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab:hover {
+  color: #1a5490;
+}
+
+.activeTab {
+  color: #1a5490;
+  border-bottom-color: #1a5490;
+}
+
+/* Office Info Cards */
+.officeInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.officeCard {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.officeCard:hover {
+  border-color: #1a5490;
+  box-shadow: 0 4px 12px rgba(26, 84, 144, 0.1);
+  transform: translateY(-2px);
+}
+
+.officeIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.officeCard h3 {
+  font-size: 1.1rem;
+  color: #1a3a52;
+  margin: 0.5rem 0;
+}
+
+.officeCard p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* View Office Button */
+.viewOfficeBtn {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  background-color: #1a5490;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewOfficeBtn:hover {
+  background-color: #0d3a5e;
+  transform: translateY(-2px);
+}
+
+/* Header section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.header h2 {
+  font-size: 2rem;
+  color: #1a3a52;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Add teacher button */
+.addTeacherBtn {
+  padding: 0.75rem 1.5rem;
+  background-color: #1a5490;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(26, 84, 144, 0.3);
+}
+
+.addTeacherBtn:hover {
+  background-color: #0d3a5e;
+  box-shadow: 0 4px 12px rgba(26, 84, 144, 0.4);
+  transform: translateY(-2px);
+}
+
+.addTeacherBtn:active {
+  transform: translateY(0);
+}
+
+/* Search section */
+.searchSection {
+  display: flex;
+  gap: 1rem;
+}
+
+.searchBox {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  font-size: 1.2rem;
+  pointer-events: none;
+  color: #999;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #1a5490;
+  box-shadow: 0 0 0 3px rgba(26, 84, 144, 0.1);
+}
+
+.searchInput::placeholder {
+  color: #999;
+}
+
+/* Error box */
+.errorBox {
+  background-color: #fdf2f2;
+  border: 1px solid #f5c4c4;
+  border-radius: 6px;
+  padding: 1rem;
+  color: #c33;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.errorBox strong {
+  color: #a00;
+}
+
+/* Loading state */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #e0e0e0;
+  border-top: 3px solid #1a5490;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingState p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  border: 2px dashed #ddd;
+  gap: 1rem;
+}
+
+.emptyIcon {
+  font-size: 3.5rem;
+}
+
+.emptyState h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.emptyState p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.emptyActionBtn {
+  padding: 0.75rem 1.5rem;
+  background-color: #1a5490;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.emptyActionBtn:hover {
+  background-color: #0d3a5e;
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .addTeacherBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .header h2 {
+    font-size: 1.5rem;
+  }
+
+  .dashboardContainer {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchBox {
+    width: 100%;
+  }
+
+  .searchInput {
+    font-size: 16px; /* Prevent mobile zoom on focus */
+  }
+
+  .header h2 {
+    font-size: 1.25rem;
+  }
+
+  .emptyState {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .emptyIcon {
+    font-size: 2.5rem;
+  }
+
+  .emptyState h3 {
+    font-size: 1.1rem;
+  }
+
+  .emptyState p {
+    font-size: 0.95rem;
+  }
+}

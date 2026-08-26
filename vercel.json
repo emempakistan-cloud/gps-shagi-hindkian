@@ -1,0 +1,18 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm ci",
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/dashboard/teacher",
+      "destination": "/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/dashboard/office",
+      "destination": "/dashboard",
+      "permanent": false
+    }
+  ]
+}

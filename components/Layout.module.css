@@ -1,0 +1,169 @@
+/* Main container */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Navigation bar */
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navContent {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a5490;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.logo:hover {
+  color: #0d3a5e;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userName {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.signOutBtn {
+  padding: 0.5rem 1rem;
+  background-color: #e8eef7;
+  color: #1a5490;
+  border: 1px solid #d0dced;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.signOutBtn:hover {
+  background-color: #d0dced;
+  color: #0d3a5e;
+}
+
+/* Main content area */
+.authMain {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.appMain {
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem 1.5rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #f0f1f3;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: auto;
+}
+
+.footerContent {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.credits {
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+}
+
+.credits strong {
+  color: #1a5490;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navContent {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .navRight {
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .userName {
+    display: none;
+  }
+
+  .appMain {
+    padding: 1rem;
+  }
+
+  .authMain {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1rem;
+  }
+
+  .signOutBtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .navContent {
+    padding: 0.75rem;
+  }
+}
