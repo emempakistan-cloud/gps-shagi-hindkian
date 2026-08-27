@@ -8,7 +8,7 @@ interface Document {
   file_size?: number;
   file_type?: string;
   storage_path: string;
-  uploaded_at: string;
+  uploaded_at?: string;
   description?: string;
 }
 
@@ -37,7 +37,8 @@ export default function DocumentList({
     return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return 'Unknown date';
     try {
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', {
