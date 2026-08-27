@@ -123,7 +123,7 @@ export default async function handler(
       const fileContent = await fs.readFile(file.filepath);
 
       // Upload to Supabase Storage
-      const { path, fileName } = await StorageService.uploadOfficeDocument(
+      const { path } = await StorageService.uploadOfficeDocument(
         category,
         fileContent,
         file.originalFilename || 'file',

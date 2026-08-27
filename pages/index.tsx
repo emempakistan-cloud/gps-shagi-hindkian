@@ -6,7 +6,6 @@ import styles from '../styles/Login.module.css';
 
 export default function Home() {
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,14 +17,11 @@ export default function Home() {
         } = await supabase.auth.getSession();
 
         if (session) {
-          setIsLoggedIn(true);
           // Redirect to dashboard if already logged in
           router.push('/dashboard');
-        } else {
-          setIsLoggedIn(false);
         }
       } catch (error) {
-        setIsLoggedIn(false);
+        // Not logged in - stay on this page
       } finally {
         setLoading(false);
       }
