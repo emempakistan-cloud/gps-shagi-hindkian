@@ -66,12 +66,17 @@ export default async function handler(
         return res.status(404).json({ error: 'Document not found' });
       }
 
-      // Only the owning teacher or an admin may download
+      // Only the owning teacher, or an admin (except for "Private"
+      // category documents, which are visible to the owning teacher only,
+      // enforced here explicitly since supabaseAdmin bypasses RLS)
       const teacher = await TeacherService.getTeacher(
         document.teacher_id,
         supabaseAdmin
       );
-      if (teacher?.user_id !== user.id && !isAdmin) {
+      const isOwner = teacher?.user_id === user.id;
+      const canAccess = isOwner || (isAdmin && document.category !== 'Private');
+
+      if (!canAccess) {
         return res.status(403).json({ error: 'Forbidden' });
       }
 

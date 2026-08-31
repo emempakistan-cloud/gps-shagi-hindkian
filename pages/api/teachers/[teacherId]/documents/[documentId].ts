@@ -47,7 +47,9 @@ export default async function handler(
         return res.status(404).json({ error: 'Document not found' });
       }
 
-      // Verify authorization - only owner or admin can delete
+      // Verify authorization - only owner, or admin (except for "Private"
+      // category documents - those are the owning teacher's alone,
+      // enforced here explicitly since supabaseAdmin bypasses RLS)
       const { data: userData } = await supabaseAdmin
         .from('gsh_users')
         .select('role')
@@ -59,7 +61,11 @@ export default async function handler(
         supabaseAdmin
       );
 
-      if (teacher?.user_id !== userId && userData?.role !== 'admin') {
+      const isOwner = teacher?.user_id === userId;
+      const isAdmin = userData?.role === 'admin';
+      const canDelete = isOwner || (isAdmin && document.category !== 'Private');
+
+      if (!canDelete) {
         return res.status(403).json({ error: 'Forbidden' });
       }
 
@@ -69,15 +75,18 @@ export default async function handler(
       // Delete metadata from database
       await TeacherDocumentService.deleteDocument(documentId, supabaseAdmin);
 
-      // Log access
-      await AccessLogService.logAccess(
-        userId,
-        documentId,
-        'teacher',
-        'delete',
-        document.file_name,
-        supabaseAdmin
-      );
+      // Log access - but never for "Private" documents (same reasoning
+      // as upload: even the log entry itself would leak metadata to admin)
+      if (document.category !== 'Private') {
+        await AccessLogService.logAccess(
+          userId,
+          documentId,
+          'teacher',
+          'delete',
+          document.file_name,
+          supabaseAdmin
+        );
+      }
 
       return res.status(200).json({ success: true });
     }

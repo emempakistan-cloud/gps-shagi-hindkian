@@ -178,15 +178,19 @@ export default async function handler(
         supabaseAdmin
       );
 
-      // Log access
-      await AccessLogService.logAccess(
-        userId,
-        document.id,
-        'teacher',
-        'upload',
-        file.originalFilename || 'Unknown',
-        supabaseAdmin
-      );
+      // Log access - but never for "Private" documents, since even
+      // logging the filename/activity would leak metadata to admin
+      // through the access log, defeating the point of it being private.
+      if (category !== 'Private') {
+        await AccessLogService.logAccess(
+          userId,
+          document.id,
+          'teacher',
+          'upload',
+          file.originalFilename || 'Unknown',
+          supabaseAdmin
+        );
+      }
 
       // Clean up temp file
       await fs.unlink(file.filepath);

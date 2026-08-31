@@ -43,9 +43,16 @@ export default function Layout({ children, userDisplayName }: LayoutProps) {
 
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p>&copy; 2024 School Teacher Document Archive. All rights reserved.</p>
+          <p>&copy; 2026 School Teacher Document Archive. All rights reserved.</p>
           <p className={styles.credits}>
-            Developed and Designed by <strong>Jamal Abdul Nasir</strong>
+            Designed and developed by:{' '}
+            <a
+              href="https://ememstore.vercel.app/#/product?id=c1ca5253-8579-4211-ace0-0d9b76c22e37"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>Jamal Abdul Nasir</strong>
+            </a>
           </p>
         </div>
       </footer>

@@ -120,6 +120,16 @@
   font-weight: 600;
 }
 
+.credits a {
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.credits a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .navContent {

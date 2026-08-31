@@ -28,7 +28,7 @@ export default function TeachersList({ isAdmin, currentUserId }: TeachersListPro
   const [error, setError] = useState('');
   const [showUploadModal, setShowUploadModal] = useState(false);
 
-  const CATEGORIES = ['Personal', 'Education', 'Employment', 'Training', 'Other'];
+  const CATEGORIES = ['Personal', 'Education', 'Employment', 'Training', 'Other', 'Private'];
 
   useEffect(() => {
     loadTeachers();
@@ -160,7 +160,11 @@ export default function TeachersList({ isAdmin, currentUserId }: TeachersListPro
                 >
                   All Categories
                 </button>
-                {CATEGORIES.map((cat) => (
+                {CATEGORIES.filter(
+                  (cat) =>
+                    cat !== 'Private' ||
+                    currentUserId === selectedTeacher.user_id
+                ).map((cat) => (
                   <button
                     key={cat}
                     className={`${styles.categoryBtn} ${
