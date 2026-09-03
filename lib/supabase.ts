@@ -570,6 +570,64 @@ export class UserService {
 // AUTHENTICATION OPERATIONS
 // ==========================================
 
+// ==========================================
+// NOTEPAD OPERATIONS
+// ==========================================
+// Fully private, self-only content - always uses the plain (browser
+// session-authenticated) client and relies on RLS for protection.
+// There is no admin-bypass variant for this feature, by design.
+
+export class NotesService {
+  static async getMyNotes() {
+    const { data, error } = await supabase
+      .from('gsh_notes')
+      .select('*')
+      .order('updated_at', { ascending: false });
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getNote(noteId: string) {
+    const { data, error } = await supabase
+      .from('gsh_notes')
+      .select('*')
+      .eq('id', noteId)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async createNote(userId: string, title: string, content: string) {
+    const { data, error } = await supabase
+      .from('gsh_notes')
+      .insert([{ user_id: userId, title, content }])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async updateNote(noteId: string, title: string, content: string) {
+    const { data, error } = await supabase
+      .from('gsh_notes')
+      .update({ title, content, updated_at: new Date().toISOString() })
+      .eq('id', noteId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async deleteNote(noteId: string) {
+    const { error } = await supabase.from('gsh_notes').delete().eq('id', noteId);
+    if (error) throw error;
+  }
+}
+
 export class AuthService {
   // Sign up
   static async signUp(email: string, password: string, fullName?: string) {

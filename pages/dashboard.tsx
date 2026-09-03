@@ -5,6 +5,7 @@ import Layout from '@/components/Layout';
 import TeachersList from '@/components/TeachersList';
 import OfficePanel from '@/components/OfficePanel';
 import ManageTeachersPanel from '@/components/ManageTeachersPanel';
+import NotepadPanel from '@/components/NotepadPanel';
 import styles from '@/styles/Dashboard.module.css';
 
 interface Teacher {
@@ -34,7 +35,7 @@ interface DashboardData {
 
 export default function Dashboard() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'teachers' | 'office' | 'manage'>('teachers');
+  const [activeTab, setActiveTab] = useState<'teachers' | 'office' | 'manage' | 'notepad'>('teachers');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [data, setData] = useState<DashboardData>({
@@ -217,6 +218,12 @@ export default function Dashboard() {
                 🛡️ Manage Teachers
               </button>
             )}
+            <button
+              className={`${styles.tab} ${activeTab === 'notepad' ? styles.activeTab : ''}`}
+              onClick={() => setActiveTab('notepad')}
+            >
+              📝 My Notepad
+            </button>
           </div>
 
           <div className={styles.tabContent}>
@@ -225,6 +232,7 @@ export default function Dashboard() {
             )}
             {activeTab === 'office' && isAdmin && <OfficePanel />}
             {activeTab === 'manage' && isAdmin && <ManageTeachersPanel />}
+            {activeTab === 'notepad' && <NotepadPanel />}
           </div>
         </div>
       </div>
